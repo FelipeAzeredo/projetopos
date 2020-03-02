@@ -1,6 +1,6 @@
 package com.projetopos.projetopos.domain;
 
-import com.sun.deploy.xml.GeneralEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ public class Produto {
     private Integer id;
     private String nome;
     private Double preco;
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name="PRODUTO_CATEGORIA",
                joinColumns = @JoinColumn(name="produto_id"),
