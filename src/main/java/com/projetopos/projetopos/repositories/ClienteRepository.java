@@ -1,9 +1,9 @@
 package com.projetopos.projetopos.repositories;
 
-import com.projetopos.projetopos.domain.Estado;
+import com.projetopos.projetopos.domain.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 }

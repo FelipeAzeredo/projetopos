@@ -24,7 +24,7 @@ public class StandardError {
         this.status = status;
     }
 
-    public String msg(){
+    public String getMsg(){
         return msg;
     }
 
