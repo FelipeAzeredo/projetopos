@@ -1,5 +1,7 @@
 package com.projetopos.projetopos.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -13,6 +15,7 @@ public class Cliente {
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection
