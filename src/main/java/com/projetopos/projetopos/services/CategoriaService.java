@@ -1,6 +1,7 @@
 package com.projetopos.projetopos.services;
 
 import com.projetopos.projetopos.domain.Categoria;
+import com.projetopos.projetopos.dto.CategoriaDTO;
 import com.projetopos.projetopos.repositories.CategoriaRepository;
 import com.projetopos.projetopos.services.exceptions.DataIntegrityException;
 import com.projetopos.projetopos.services.exceptions.ObjectNotFoundException;
@@ -53,6 +54,10 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return  categoriaRepository.findAll(pageRequest);
 
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDTO){
+        return new Categoria(objDTO.getId(), objDTO.getNome());
     }
 
 
