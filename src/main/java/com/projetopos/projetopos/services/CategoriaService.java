@@ -2,8 +2,10 @@ package com.projetopos.projetopos.services;
 
 import com.projetopos.projetopos.domain.Categoria;
 import com.projetopos.projetopos.repositories.CategoriaRepository;
+import com.projetopos.projetopos.services.exceptions.DataIntegrityException;
 import com.projetopos.projetopos.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,4 +31,16 @@ public class CategoriaService {
         find(obj.getId());
         return categoriaRepository.save(obj);
     }
+    public void delete(Integer id){
+        find(id);
+        try{
+            categoriaRepository.deleteById(id);
+        }catch(DataIntegrityViolationException e){
+            throw  new DataIntegrityException("Não e possivel excluir categorias que possui produtos");
+
+        }
+
+
+    }
+
 }

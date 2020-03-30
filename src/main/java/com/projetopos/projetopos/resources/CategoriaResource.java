@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.xml.ws.Response;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @RestController
 @RequestMapping(value="/categorias")
@@ -37,6 +34,12 @@ public class CategoriaResource {
     public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
         obj.setId(id);
         obj = categoriaService.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        categoriaService.delete(id);
         return ResponseEntity.noContent().build();
 
     }
