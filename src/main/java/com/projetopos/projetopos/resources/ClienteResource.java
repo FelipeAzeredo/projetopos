@@ -5,6 +5,7 @@ import com.projetopos.projetopos.domain.Categoria;
 import com.projetopos.projetopos.domain.Cliente;
 import com.projetopos.projetopos.dto.CategoriaDTO;
 import com.projetopos.projetopos.dto.ClienteDTO;
+import com.projetopos.projetopos.dto.ClienteNewDTO;
 import com.projetopos.projetopos.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,7 +49,7 @@ public class ClienteResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO){
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO){
         Cliente obj = clienteService.fromDTO(objDTO);
         obj = clienteService.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
