@@ -3,7 +3,7 @@ package com.projetopos.projetopos.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
-import javax.xml.crypto.Data;
+
 import java.util.Date;
 
 @Entity
