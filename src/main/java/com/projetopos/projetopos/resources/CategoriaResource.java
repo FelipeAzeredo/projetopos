@@ -5,12 +5,11 @@ import com.projetopos.projetopos.domain.Categoria;
 import com.projetopos.projetopos.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.xml.ws.Response;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +25,15 @@ public class CategoriaResource {
 
         Categoria categoria = categoriaService.find(id);
         return ResponseEntity.ok().body(categoria);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody Categoria obj){
+        obj = categoriaService.create(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+
+
     }
 
 
