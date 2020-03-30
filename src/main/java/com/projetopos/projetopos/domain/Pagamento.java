@@ -1,5 +1,7 @@
 package com.projetopos.projetopos.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,6 +11,7 @@ public abstract class Pagamento {
     @Id
     private Integer id;
     private Integer estado;
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
