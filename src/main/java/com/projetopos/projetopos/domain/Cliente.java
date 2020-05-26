@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Cliente {
@@ -21,14 +22,19 @@ public class Cliente {
     private String senha;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
-    @ElementCollection
+    @ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name="PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
     @CollectionTable(name = "TELEFONE")
+    @ElementCollection
     private Set<String> telefones = new HashSet<>();
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente(){}
+    public Cliente(){
+        addPerfil(Perfil.CLIENTE);
+    }
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
         this.id = id;
@@ -37,6 +43,7 @@ public class Cliente {
         this.cpfOuCnpj = cpfOuCnpj;
         this.tipo = (tipo == null ) ? null : tipo.getCod();
         this.senha = senha;
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Integer getId() {
@@ -113,6 +120,16 @@ public class Cliente {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Set<Perfil> getPerfil(){
+        return perfis .stream().map(x ->Perfil.toEnum(x)).collect(Collectors.toSet());
+
+    }
+
+    public void addPerfil(Perfil perfil){
+        perfis.add(perfil.getCod());
+
     }
 
     @Override
