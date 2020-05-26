@@ -1,4 +1,4 @@
-/*package com.projetopos.projetopos.security;
+package com.projetopos.projetopos.security;
 
 import java.io.IOException;
 
@@ -54,4 +54,4 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
 
-}*/
+}

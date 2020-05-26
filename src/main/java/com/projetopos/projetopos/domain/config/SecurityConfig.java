@@ -1,6 +1,7 @@
 package com.projetopos.projetopos.domain.config;
 
 import com.projetopos.projetopos.security.JWTAuthenticationFilter;
+import com.projetopos.projetopos.security.JWTAuthorizationFilter;
 import com.projetopos.projetopos.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(),jwtutil));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(),jwtutil, userDetailsService));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
