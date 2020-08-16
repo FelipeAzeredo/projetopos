@@ -38,7 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
     private static final String[] PUBLIC_MATCHERS_POST = {"/clientes/**", "/auth/forgot/**"};
-    private static final String[] PUBLIC_MATCHERS_GET = {"/produtos/**", "/categorias/**"};
+    private static final String[] PUBLIC_MATCHERS_GET = {
+            "/produtos/**",
+            "/categorias/**",
+            "/categorias/**",
+            "/estados/**"
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -74,4 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
+
 }
