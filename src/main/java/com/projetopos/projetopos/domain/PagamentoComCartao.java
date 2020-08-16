@@ -2,7 +2,11 @@ package com.projetopos.projetopos.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.projetopos.projetopos.domain.EstadoPagamento;
+
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 
     private Integer numeroDeParcelas;
